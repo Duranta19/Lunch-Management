@@ -6,10 +6,9 @@ function App() {
   return (
     <>
       <Nav 
-        li= {["Add Menu", "View Employee Choice", "Logout"]}
+        li= {["home", "Logout"]}
       />
-      
-     
+      <LoginForm />
     </>
   );
 }
