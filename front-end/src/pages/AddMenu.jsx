@@ -1,17 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 import Nav from './components/Nav';
-import EmployeeChoiceList from './components/EmployeeChoiceList';
-function App() {
+import AddMenuForm from './components/AddMenuForm'
+import ViewItemAdmin from './components/ViewItemAdmin';
+function AddMenu() {
   return (
     <>
       <Nav 
         li= {["Add Menu", "View Employee Choice", "Logout"]}
       />
-      <EmployeeChoiceList />
 
+      <AddMenuForm />
+      <ViewItemAdmin />
     </>
   );
 }
 
-export default App;
+export default AddMenu;
