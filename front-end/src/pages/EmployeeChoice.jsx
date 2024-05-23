@@ -1,12 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-import Nav from './components/Nav';
-import EmployeeChoiceList from './components/EmployeeChoiceList';
+
+import '../App.css';
+import Nav from '../components/Nav';
+import EmployeeChoiceList from '../components/EmployeeChoiceList';
 function EmployeeChoice() {
   return (
     <>
       <Nav 
-        li= {["Add Menu", "View Employee Choice", "Logout"]}
+        li= {[{label: "Add Menu", href: "add-menu"},{label: "View Employee Choice", href: "employee-choice"}, {label: "Logout", href: "/logout"}]}
       />
       <EmployeeChoiceList />
 
