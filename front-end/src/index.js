@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import ViewMenu from './pages/ViewMenu';
 import MyChoice from './pages/MyChoice';
+import Signup from './pages/Signup';
 
 //const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
     path: "/",
     index:true,
     element: <Login /> ,
+  },
+  {
+    path: "/signup",
+    element: <Signup/>
   },
   {
     path: "admin",

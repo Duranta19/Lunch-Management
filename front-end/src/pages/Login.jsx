@@ -6,8 +6,9 @@ function Login() {
   return (
     <>
       <Nav 
-        li= {["home", "Logout"]}
+        li= {[{label:"Signup", href: "/signup"}]}
       />
+      <span className='flex underline text-4xl mx-auto items-center justify-center mt-5'>Login</span>
       <LoginForm />
     </>
   );
