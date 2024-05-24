@@ -19,7 +19,29 @@ const signUp = async(req,res)=>{
 };
 
 // user signin
+const signIn = async(req,res) => {
+    const {user_name, password} = req.body;
+    try {
+        const user_result = await pool.query("SELECT * FROM users where user_name = $1", [user_name]);
+        const user = user_result.rows[0];
 
+        if (!user) {
+            return res.status(202).send('Invalid username or password.');
+          }
+      
+          const passwordMatch = await bcrypt.compare(password, user.password);
+          if (passwordMatch) {
+            res.send("Success");
+            console.log("Success");
+          }
+          else{
+            return res.status(203).send('Invalid username or password.');
+          }
+    } catch (error) {
+        
+    }
+}
 module.exports ={
     signUp,
+    signIn,
 }

@@ -13,5 +13,6 @@ const AuthRoutes = Router();
 // AuthRoutes.route('/')
 //         .get()
 //         .post()
-AuthRoutes.route('/signin').post(signUp)
+AuthRoutes.route('/signup').post(signUp)
+AuthRoutes.route('/signin').post(signIn)
 module.exports = AuthRoutes;
