@@ -1,23 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
+import {SignupContext} from "../context_api/signupContext";
 
 const SigninForm = () => {
+  const {
+    handelInput,
+    submitHandelar,
+    formData,
+  }= useContext(SignupContext)
   return (
     <div>
-      <form className="max-w-sm mx-auto">
+      <form className="max-w-sm mx-auto" onSubmit={submitHandelar}>
         <div className="mb-5">
           <label
             for="email"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
-            Your email
+            Your Username
           </label>
           <input
-            type="email"
-            id="email"
-            name="email"
+            type="text"
+            id="user_name"
+            name="user_name"
+            value={formData.user_name}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="name@email.com"
+            placeholder="Username"
             required
+            onChange={handelInput}
           />
         </div>
         <div className="mb-5">
@@ -31,9 +39,11 @@ const SigninForm = () => {
             type="password"
             id="password"
             name="password"
+            value={formData.password}
             placeholder="Enter your password"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             required
+            onChange={handelInput}
           />
         </div>
         <div class="mb-5">
@@ -46,10 +56,12 @@ const SigninForm = () => {
           <input
             type="password"
             id="repeat-password"
-            name="repeat-password"
+            name="conf_pass"
+            value={formData.conf_pass}
             placeholder="Repeat password"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             required
+            onChange={handelInput}
           />
         </div>
 
@@ -64,11 +76,13 @@ const SigninForm = () => {
           <select
             id="category"
             name="category"
+            value={formData.category}
+            onChange={handelInput}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
             <option selected>Choose a Category</option>
-            <option value="Admin">United States</option>
-            <option value="Employee">Canada</option>
+            <option value="Admin">Admin</option>
+            <option value="Employee">Employee</option>
    
           </select>
         </div>

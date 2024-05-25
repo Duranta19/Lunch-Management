@@ -5,14 +5,6 @@ const { signIn, signUp } = require("../controllers/authController");
 
 const AuthRoutes = Router();
 
-// Add routes
-// routes.get('/', SessionController.store);
-// routes.post('/', SessionController.store);
-// routes.put('/', SessionController.store);
-// routes.delete('/', SessionController.store);
-// AuthRoutes.route('/')
-//         .get()
-//         .post()
 AuthRoutes.route('/signup').post(signUp)
 AuthRoutes.route('/signin').post(signIn)
 module.exports = AuthRoutes;
