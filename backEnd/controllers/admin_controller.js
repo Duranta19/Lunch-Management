@@ -3,7 +3,8 @@ const pool = require("../dbConnect");
 const date = new Date();
 const addOption =  async (req,res) => {
     const {option_name, items, total_cal} = req.body;
-    const img_path = req.file.path;
+    // console.log(req.body);
+    const img_path = req.file ? req.file.path : null;
 
 
     let day = date.getDate();

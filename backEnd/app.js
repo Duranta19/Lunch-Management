@@ -11,7 +11,7 @@ const session = require('express-session');
 const app = express()
 const port = process.env.PORT
 console.log(port);
-console.log(process.env.SECRET_KEY);
+// console.log(process.env.SECRET_KEY);
 app.use(bodyParser.json())
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));

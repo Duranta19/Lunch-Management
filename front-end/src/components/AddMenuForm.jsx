@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AdminAddOptContext } from "../context_api/AdminAddOptCtx";
 
 const AddMenuForm = () => {
+  const { handelInput, handelImage, submitHandeler, optData } = useContext(AdminAddOptContext);
   return (
     <div className="mt-5">
-      <form className="max-w-sm mx-auto">
+      <form className="max-w-sm mx-auto" onSubmit={submitHandeler}>
         <div className="mb-5">
           <label
             for="Option title"
@@ -14,10 +16,12 @@ const AddMenuForm = () => {
           <input
             type="text"
             id="title"
-            name="opt_title"
+            name="option_name"
+            value={optData.option_name}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Food Name"
             required
+            onChange={handelInput}
           />
         </div>
 
@@ -31,10 +35,12 @@ const AddMenuForm = () => {
           <input
             type="text"
             id="item"
-            name="item"
+            name="items"
+            value={optData.items}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Items Include"
             required
+            onChange={handelInput}
           />
         </div>
 
@@ -47,11 +53,12 @@ const AddMenuForm = () => {
           </label>
           <input
             type="text"
-            id="calorie"
-            name="calorie"
+            id="total_cal"
+            name="total_cal"
+            value={optData.total_cal}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Total Calorie Contain"
-            required
+            onChange={handelInput}
           />
         </div>
         <div className=" mb-5">
@@ -62,14 +69,15 @@ const AddMenuForm = () => {
             Upload Food image
           </label>
           <input
-            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
+            className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
             aria-describedby="file_input_help"
-            id="file_input"
-            name="file_input"
+            id="image"
+            name="image"
             type="file"
+            onChange={handelImage}
           />
           <p
-            class="mt-1 text-sm text-gray-500 dark:text-gray-300"
+            className="mt-1 text-sm text-gray-500 dark:text-gray-300"
             id="file_input_help"
           >
             SVG, PNG, JPG or GIF (MAX. 800x400px).
@@ -78,7 +86,8 @@ const AddMenuForm = () => {
 
         <button
           type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        >
           Add New Food Item
         </button>
       </form>
