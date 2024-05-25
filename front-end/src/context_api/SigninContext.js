@@ -22,7 +22,7 @@ const SigninProvider = ({ children }) => {
             if (signinResposnse.data.msg == 'admin') {
                 navigate('/admin');
             } else {
-                navigate('/employee')
+                navigate('/employee');
             }
 
         } catch (error) {
