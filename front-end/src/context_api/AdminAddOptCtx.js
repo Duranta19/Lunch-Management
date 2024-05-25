@@ -1,8 +1,9 @@
-import React, { Children, createContext, useState } from 'react'
+import React, { Children, createContext, useState, useEffect } from 'react'
 import axios from 'axios';
 export const AdminAddOptContext = createContext("")
 
 const AdminAddOptProvider = ({children}) => {
+    const [foodData, setFoodData] = useState([]);
     const [optData, setOptData] = useState({
         option_name: "", 
         items: "", 
@@ -44,11 +45,29 @@ const AdminAddOptProvider = ({children}) => {
             console.error(error);
         }
     };
+    const fetchFoodOptData = async() =>{
+        const response = await axios.get('http://localhost:3001/admin/get-option');
+        setFoodData(response.data);
+    }
+    useEffect(() => {
+
+        fetchFoodOptData();
+
+    }, [foodData,optData]);
+
+    const deleteItemhandelar = async (opt_id) =>{
+
+        const dltResponse = await axios.delete(`http://localhost:3001/admin/delete-item/${opt_id}`);
+        const deleteItem = foodData.filter(items => items.opt_id !== opt_id);
+        setFoodData(deleteItem)
+    }
     const add_item_value = {
         handelInput,
         handelImage,
         submitHandeler,
         optData,
+        foodData,
+        deleteItemhandelar,
     }
   return (
     <div>

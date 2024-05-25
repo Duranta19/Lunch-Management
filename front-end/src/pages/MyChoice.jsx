@@ -4,7 +4,7 @@ import MyChoiceList from '../components/MyChoiceList';
 const MyChoice = () => {
     return (
         <>
-          <Nav li= {[{label: "View Menu", href: "/employee/employee-choice"},{label: "My Choice", href: "/employee/employee-choice"}, {label: "Logout", href: "/logout"}]} />
+          <Nav li= {[{label: "View Menu", href: "/employee/view-menu"},{label: "My Choice", href: "/employee/employee-choice"}, {label: "Logout", href: "/logout"}]} />
     
           <MyChoiceList/>
     

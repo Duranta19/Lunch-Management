@@ -18,7 +18,8 @@ const SigninProvider = ({ children }) => {
         e.preventDefault();
         try {
             const signinResposnse = await axios.post('http://localhost:3001/signin/', formData);
-            console.log(signinResposnse.data.msg);
+            console.log(signinResposnse.data.msg, signinResposnse.data.user_id);
+            sessionStorage.setItem = signinResposnse.data.user_id;
             if (signinResposnse.data.msg == 'admin') {
                 navigate('/admin');
             } else {

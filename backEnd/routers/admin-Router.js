@@ -1,5 +1,5 @@
 const {Router} = require("express");
-const { addOption, getOption } = require("../controllers/admin_controller");
+const { addOption, getOption, deleteOption } = require("../controllers/admin_controller");
 const multer  = require('multer')
 
 const storage = multer.diskStorage({
@@ -16,5 +16,5 @@ const Admin_Routes = Router();
 
 Admin_Routes.route('/add-option').post(upload.single('image'),addOption); //add new food option
 Admin_Routes.route('/get-option').get(getOption); //view all foodoption avaliable today
-
+Admin_Routes.route('/delete-item/:optId').delete(deleteOption);
 module.exports = Admin_Routes;

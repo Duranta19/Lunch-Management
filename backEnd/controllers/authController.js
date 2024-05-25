@@ -44,7 +44,7 @@ const signIn = async (req, res) => {
       req.session.user_id = user.id;
         console.log(req.session.user_id);
       if (user.category === "admin") {
-        return res.json({"msg": "admin"});
+        return res.json({"msg": "admin", "user_id": user.id});
       } else {
         return res.json({"msg": "employee"});
       }
