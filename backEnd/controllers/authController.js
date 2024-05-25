@@ -1,5 +1,6 @@
 const pool = require("../dbConnect");
 const bcrypt = require('bcrypt');
+const { use } = require("../routers/authRouter");
 // new users signup
 const signUp = async(req,res)=>{
     const {user_name, password, conf_pass, category} = req.body;
@@ -31,7 +32,16 @@ const signIn = async(req,res) => {
       
           const passwordMatch = await bcrypt.compare(password, user.password);
           if (passwordMatch) {
-            res.send("Success");
+            sessionStorage.setItem('user_id', user.id)
+            sessionStorage.setItem('category', user.category)
+            sessionStorage.setItem()
+            
+            if(user.category === 'admin'){
+                res.redirect("/admin")
+            }
+            else{
+                res.redirect("/employee")
+            }
             console.log("Success");
           }
           else{
