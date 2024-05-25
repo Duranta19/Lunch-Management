@@ -30,10 +30,11 @@ const signIn = async(req,res) => {
             return res.status(202).send('Invalid username or password.');
           }
       
-          const passwordMatch = await bcrypt.compare(password, user.password);
+          const passwordMatch = await bcrypt.compare(password, user.password); //check password
           if (passwordMatch) {
-            sessionStorage.setItem('user_id', user.id)
-            sessionStorage.setItem('category', user.category)
+            // set user id and category to session
+            req.session.user_id = user.id
+            req.session.category = user.category
             sessionStorage.setItem()
             
             if(user.category === 'admin'){

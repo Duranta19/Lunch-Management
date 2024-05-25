@@ -53,11 +53,12 @@ CREATE TABLE public.order_food
     CONSTRAINT fk_food_id
         FOREIGN KEY (opt_id) REFERENCES food_option (opt_id) 
 );
+--add date column
+ALTER TABLE IF EXISTS public.order_food
+    ADD COLUMN date character varying;
+
 --add food for employee
 INSERT INTO order_food(employee_id, opt_id) VALUES(1,1)
 
---view employee order
-SELECT *
-FROM food_option
-INNER JOIN order_food ON  food_option.opt_id = order_food.opt_id
-WHERE order_food.employee_id = 1;
+--view employee order history
+SELECT * FROM food_option INNER JOIN order_food ON  food_option.opt_id = order_food.opt_id WHERE order_food.employee_id = 1;

@@ -11,10 +11,10 @@ const storage = multer.diskStorage({
     }
   });
   
-  const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 const Admin_Routes = Router();
 
-Admin_Routes.route('/add-option').post(upload.single('image'),addOption);
-Admin_Routes.route('/get-option').get(getOption);
+Admin_Routes.route('/add-option').post(upload.single('image'),addOption); //add new food option
+Admin_Routes.route('/get-option').get(getOption); //view all foodoption avaliable today
 
 module.exports = Admin_Routes;
