@@ -42,3 +42,22 @@ values('Trediotional-1', 'Rice, Vegetables, Pulse', '25.8', 'tred-food')
 
 -- Delete Food Option.
 DELETE FROM food_option WHERE opt_id = 4
+
+--create table for food order
+CREATE TABLE public.order_food
+(
+    order_id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 ),
+    employee_id integer NOT NULL,
+    opt_id integer NOT NULL, 
+    PRIMARY KEY (order_id),
+    CONSTRAINT fk_food_id
+        FOREIGN KEY (opt_id) REFERENCES food_option (opt_id) 
+);
+--add food for employee
+INSERT INTO order_food(employee_id, opt_id) VALUES(1,1)
+
+--view employee order
+SELECT *
+FROM food_option
+INNER JOIN order_food ON  food_option.opt_id = order_food.opt_id
+WHERE order_food.employee_id = 1;
