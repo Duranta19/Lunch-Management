@@ -34,9 +34,9 @@ const ViewMenu = () => {
 
       <div class="p-5 grid grid-cols-1 mx-auto md:grid-cols-3 gap-3 lg:grid-cols-4">
         {data.map((item) => (
-          // <ViewMenuProvider>
-              <ItemCard key={item.opt_id} opt_name={item.opt_name} img={item.img_path} opt_items={item.opt_items} total_cal={item.total_cal}/>
-          // </ViewMenuProvider>
+          <ViewMenuProvider>
+              <ItemCard key={item.opt_id} opt_id={item.opt_id} opt_name={item.opt_name} img={item.img_path} opt_items={item.opt_items} total_cal={item.total_cal}/>
+          </ViewMenuProvider>
             
         ))}
   

@@ -5,7 +5,7 @@ const date = new Date();
 
 const orderFood = async (req, res) => {
     const { opt_id, user_id } = req.body;
-    console.log(req.body); 
+    console.log(opt_id, user_id); 
 
 
     if (isNaN(user_id)) {
@@ -23,13 +23,13 @@ const orderFood = async (req, res) => {
 
         if (order_exist.rows.length === 0) {
             const order_food = await pool.query("INSERT INTO order_food(employee_id, opt_id, date) VALUES($1, $2, $3)", [user_id, opt_id, currentDate]);
-            return res.status(201).json({ "message": "Order Place Success" });
+            res.status(400).send("Order Place Success");
         } else {
-            return res.status(401).json({ "message": "Order exists. Please delete your previous order." });
+            res.status(200).send("Order exists. Please delete your previous order.");
         }
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ "message": "Internal Server Error" });
+
     }
 };
 

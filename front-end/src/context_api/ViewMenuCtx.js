@@ -7,19 +7,27 @@ const ViewMenuProvider =  ({children}) => {
 
   const user_id = sessionStorage.getItem("user_id");
 
-  const orderFoodHandelar = (orderId) =>{
-    const orderData = new FormData();
-    orderData.append('opt_id', orderId)
-    orderData.append('user_id', sessionStorage.getItem('user_id'));
+  const orderFoodHandelar = async(orderId) =>{
+    // const orderData = new FormData();
+    // orderData.append('opt_id', orderId)
+    // orderData.append('user_id', sessionStorage.getItem('user_id'));
 
     const od = {
       'opt_id': orderId,
       'user_id':sessionStorage.getItem('user_id'),
     }
     try {
-      const orderResponse = axios.post('http://localhost:3001/employee/order-food',orderData)
+      const orderResponse = await axios.post('http://localhost:3001/employee/order-food',od)
       const msg = orderResponse.data.message;
-      alert(msg);
+      console.log("asasdsad");
+      if(orderResponse.status === 400){
+        alert("Food order successfull");
+        console.log(msg)
+      }
+      if(orderResponse.status === 200){
+        alert("Food order failed. An order oxist please delete your previous order to place a new one.");
+      }
+      
     } catch (error) {
         console.error(error);
     }
