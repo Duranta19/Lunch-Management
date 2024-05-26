@@ -20,7 +20,7 @@ const ViewMenuProvider =  ({children}) => {
       const orderResponse = await axios.post('http://localhost:3001/employee/order-food',od)
       // const msg = orderResponse.data.message;
 
-      if(orderResponse.status === 403){
+      if(orderResponse.status === 210){
         alert("Food order successfull");
         // console.log(msg)
       }

@@ -23,7 +23,7 @@ const orderFood = async (req, res) => {
 
         if (order_exist.rows.length === 0) {
             const order_food = await pool.query("INSERT INTO order_food(employee_id, opt_id, date) VALUES($1, $2, $3)", [user_id, opt_id, currentDate]);
-            res.status(403).send("Order Place Success");
+            res.status(210).send("Order Place Success");
         } else {
             res.status(200).send("Order exists. Please delete your previous order.");
         }
