@@ -3,7 +3,7 @@ const { orderFood, ViewOrderHistory } = require("../controllers/employee_control
 
 const EmployeeRouters = Router();
 
-EmployeeRouters.route('/order-food/:optId').get(orderFood)
-EmployeeRouters.route('/my-order').get(ViewOrderHistory)
+EmployeeRouters.route('/order-food/').post(orderFood)
+EmployeeRouters.route('/my-order/:id').get(ViewOrderHistory)
 
 module.exports = EmployeeRouters;

@@ -5,7 +5,7 @@ const addOption =  async (req,res) => {
     const {option_name, items, total_cal} = req.body;
     // console.log(req.body);
     const img_path = req.file ? req.file.path : null;
-
+    const Img_Path = img_path.replace(/\\/g, "/");
 
     let day = date.getDate();
     let month = date.getMonth() + 1;

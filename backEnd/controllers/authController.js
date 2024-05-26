@@ -1,6 +1,7 @@
 const pool = require("../dbConnect");
 const bcrypt = require("bcrypt");
 const { use } = require("../routers/authRouter");
+
 // new users signup
 const signUp = async (req, res) => {
   const { user_name, password, conf_pass, category } = req.body;
@@ -34,23 +35,27 @@ const signIn = async (req, res) => {
     );
     const user = user_result.rows[0];
     console.log(user);
-    if (!user) {
+    if (user_result.rows.length === 0) {
       return res.status(202).send("Invalid username or password.");
-    }
-
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (passwordMatch) {
-      console.log("Success");
-      req.session.user_id = user.id;
-        console.log(req.session.user_id);
-      if (user.category === "admin") {
-        return res.json({"msg": "admin", "user_id": user.id});
-      } else {
-        return res.json({"msg": "employee"});
-      }
- 
     } else {
-      return res.status(203).send("Invalid username or password.");
+      const passwordMatch = await bcrypt.compare(password, user.password);
+      if (passwordMatch) {
+        console.log("Success", user);
+        // req.session.user_id = user.id;
+        // req.session.save();
+        // console.log(req.session);
+        if (user.category === "admin") {
+          return res.json({ msg: "admin", user_id: user.id });
+        } else if(user.category === "employee") {
+          return res.json({ msg: "employee", user_id: user.id });
+        }
+        else{
+          alert("Invalid name or password");
+          return res.json({ msg: "Invalid name or password" });
+        }
+      } else {
+        return res.status(203).send("Invalid username or password.");
+      }
     }
   } catch (error) {}
 };

@@ -19,11 +19,16 @@ const SigninProvider = ({ children }) => {
         try {
             const signinResposnse = await axios.post('http://localhost:3001/signin/', formData);
             console.log(signinResposnse.data.msg, signinResposnse.data.user_id);
-            sessionStorage.setItem = signinResposnse.data.user_id;
+            sessionStorage.setItem('user_id',signinResposnse.data.user_id);
+            console.log(sessionStorage.getItem('user_id'))
             if (signinResposnse.data.msg == 'admin') {
                 navigate('/admin');
-            } else {
+            } else if(signinResposnse.data.msg == 'employee'){
                 navigate('/employee');
+            }
+            else{
+                alert(signinResposnse.data.msg);
+                navigate('/')
             }
 
         } catch (error) {
