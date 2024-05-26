@@ -1,6 +1,6 @@
-# Project Title
+# Project Title: Lunch Management System
 
-A brief description of your project.
+A brief description of this project.
 
 ## Technologies Used
 
