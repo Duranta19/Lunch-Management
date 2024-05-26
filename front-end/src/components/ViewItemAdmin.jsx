@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AdminAddOptContext } from "../context_api/AdminAddOptCtx";
 
 const ViewItemAdmin = () => {
-  const { foodData, deleteItemhandelar } = useContext(AdminAddOptContext);
+  const { foodData, deleteItemhandelar, updateHaldellar } = useContext(AdminAddOptContext);
   return (
     <div>
       <hr className="my-5" />
@@ -45,7 +45,7 @@ const ViewItemAdmin = () => {
                 <td className=" space-x-3 px-6 py-4">
                   <a
                     href="#"
-                    
+                    onClick={()=>updateHaldellar(true, item)}
                     className=" space-x-3 font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
                     Edit

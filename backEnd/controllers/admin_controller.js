@@ -20,6 +20,34 @@ const addOption =  async (req,res) => {
         console.error(error);
     }
 };
+const updateOption = async (req,res) =>{
+    const upId = req.params.upId;
+    const {option_name, items, total_cal} = req.body;
+    console.log(option_name, items, total_cal);
+    const img_path = req.file ? req.file.path : '/uploads/istockphoto-1191080960-612x612.jpg';
+    const Img_Path = img_path.replace(/\\/g, "/");
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let currentDate = `${day}-${month}-${year}`; //set date
+    try {
+        const updateResponse = await pool.query(
+            'UPDATE food_option SET opt_name = $1, opt_items = $2, total_cal = $3, img_path = $4, date = $5 WHERE opt_id = $6',
+            [option_name, items, total_cal, Img_Path, currentDate, upId]
+        );
+
+        if (updateResponse.rowCount > 0) {
+            res.status(205).send("Update Successful");
+            console.log("Update Successful:", updateResponse);
+        } else {
+            res.status(404).send("Update Failed: Option not found");
+            console.log("Update Failed: Option not found");
+        }
+    } catch (error) {
+        console.error("Error updating option:", error);
+        res.status(500).send("Internal Server Error");
+    }
+}
 const getOption = async (req,res) => {
     try {
         const {option_name, items, total_cal} = req.body;
@@ -66,4 +94,5 @@ module.exports = {
     getOption,
     deleteOption,
     ViewOrderHistoryAdmin,
+    updateOption,
 }
