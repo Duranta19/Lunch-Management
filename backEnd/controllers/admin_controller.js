@@ -48,8 +48,22 @@ const deleteOption = async(req,res) =>{
         console.error(error);
     }
 }
+const ViewOrderHistoryAdmin = async (req,res) => {
+    const employeeId = parseInt(req.params.id,10);
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let currentDate = `${day}-${month}-${year}`; //set date
+    try {
+        const ViewOrderHistory = await pool.query("SELECT food_option.*,order_food.*,users.user_name AS e_name FROM food_option RIGHT JOIN order_food ON food_option.opt_id = order_food.opt_id JOIN users ON users.id = order_food.employee_id WHERE order_food.date = $1;", [currentDate]);
+        res.json(ViewOrderHistory.rows);
+    } catch (error) {
+        
+    }
+}
 module.exports = {
     addOption,
     getOption,
     deleteOption,
+    ViewOrderHistoryAdmin,
 }

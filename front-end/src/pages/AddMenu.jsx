@@ -7,7 +7,7 @@ function AddMenu() {
   return (
     <>
       <Nav 
-        li= {[{label: "Add Menu", href: "/admin/add-menu"},{label: "View Employee Choice", href: "/admin/employee-choice"}, {label: "Logout", href: "/logout"}]}
+        li= {[{label: "Add Menu", href: "/admin/add-menu"},{label: "View Employee Choice", href: "/admin/employee-choice"}]}
       />
       <AdminAddOptProvider >
         <AddMenuForm />

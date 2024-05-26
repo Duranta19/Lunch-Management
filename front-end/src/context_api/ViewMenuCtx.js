@@ -18,11 +18,11 @@ const ViewMenuProvider =  ({children}) => {
     }
     try {
       const orderResponse = await axios.post('http://localhost:3001/employee/order-food',od)
-      const msg = orderResponse.data.message;
-      console.log("asasdsad");
-      if(orderResponse.status === 400){
+      // const msg = orderResponse.data.message;
+
+      if(orderResponse.status === 403){
         alert("Food order successfull");
-        console.log(msg)
+        // console.log(msg)
       }
       if(orderResponse.status === 200){
         alert("Food order failed. An order oxist please delete your previous order to place a new one.");

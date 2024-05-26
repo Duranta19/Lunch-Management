@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { OrderHistCtx } from "../context_api/OrderHistCtx";
 
 const EmployeeChoiceList = () => {
+  const {histAdmin} = useContext(OrderHistCtx);
   return (
     <div>
       <hr className="my-5" />
@@ -18,6 +20,9 @@ const EmployeeChoiceList = () => {
                 Employee Name
               </th>
               <th scope="col" class="px-6 py-3">
+                Food Option
+              </th>
+              <th scope="col" class="px-6 py-3">
                 Item
               </th>
               <th scope="col" class="px-6 py-3">
@@ -26,20 +31,24 @@ const EmployeeChoiceList = () => {
             </tr>
           </thead>
           <tbody>
-            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Microsoft Surface Pro
-              </th>
-              <td class="px-6 py-4">White</td>
-              <td class="px-6 py-4">Laptop PC</td>
-              <td class="px-6 py-4">$1999</td>
-            
-            </tr>
+            {histAdmin.map((item) => (
+                  <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {item.employee_id}
+                  </th>
+                  <td class="px-6 py-4">{item.e_name}</td>
+                  <td class="px-6 py-4">{item.opt_name}</td>
+                  <td class="px-6 py-4">{item.opt_items}</td>
+                  <td class="px-6 py-4">{item.date}</td>
+                
+                </tr>
+            ))}
 
-            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+
+            {/* <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <th
                 scope="row"
                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -50,7 +59,7 @@ const EmployeeChoiceList = () => {
               <td class="px-6 py-4">Laptop PC</td>
               <td class="px-6 py-4">$1999</td>
             
-            </tr>
+            </tr> */}
 
           </tbody>
         </table>

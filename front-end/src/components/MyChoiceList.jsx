@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { OrderHistCtx } from '../context_api/OrderHistCtx'
 
 const MyChoiceList = () => {
+  const { hist,
+    deleteOrder,} = useContext(OrderHistCtx)
   return (
     <div>
               <div className="relative overflow-x-auto shadow-md px-10 py-10 sm:rounded-lg">
@@ -25,70 +28,36 @@ const MyChoiceList = () => {
             </tr>
           </thead>
           <tbody>
+            {hist.map((item) => (
+                          <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                          <th
+                            scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                          >
+                            {item.opt_name}
+                          </th>
+                          <td class="px-6 py-4">{item.opt_items}</td>
+                          <td class="px-6 py-4">{item.total_cal}</td>
+                          <td class="px-6 py-4">{item.date}</td>
+                          <td class=" space-x-3 px-6 py-4">
+                            {/* <a
+                              href="#"
+                              className=" space-x-3 font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                            >
+                              Edit
+                            </a> */}
+                            <a
+                              href="#"
+                              onClick={()=> deleteOrder(item.order_id)}
+                              className=" space-x-3 font-medium text-red-600 dark:text-red-500 hover:underline"
+                            >
+                              Delete
+                            </a>
+                          </td>
+                        </tr>
+            ))}
 
-            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Microsoft Surface Pro
-              </th>
-              <td class="px-6 py-4">White</td>
-              <td class="px-6 py-4">Laptop PC</td>
-              <td class="px-6 py-4">$1999</td>
-              <td class=" space-x-3 px-6 py-4">
-                <a
-                  href="#"
-                  className=" space-x-3 font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Edit
-                </a>
-                <a
-                  href="#"
-                  className=" space-x-3 font-medium text-red-600 dark:text-red-500 hover:underline"
-                >
-                  Delete
-                </a>
-              </td>
-            </tr>
-            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Magic Mouse 2
-              </th>
-              <td class="px-6 py-4">Black</td>
-              <td class="px-6 py-4">Accessories</td>
-              <td class="px-6 py-4">$99</td>
-              <td class="px-6 py-4">
-                <a
-                  href="#"
-                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Google Pixel Phone
-              </th>
-              <td class="px-6 py-4">Gray</td>
-              <td class="px-6 py-4">Phone</td>
-              <td class="px-6 py-4">$799</td>
-              <td class="px-6 py-4">
-                <a
-                  href="#"
-                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
+            
             
           </tbody>
         </table>

@@ -5,11 +5,11 @@ const date = new Date();
 
 const orderFood = async (req, res) => {
     const { opt_id, user_id } = req.body;
-    console.log(opt_id, user_id); 
+    // console.log(opt_id, user_id); 
 
 
     if (isNaN(user_id)) {
-        return res.status(400).json({ "message": "Invalid user ID" });
+        return res.status(203).json({ "message": "Invalid user ID" });
     }
 
     let day = date.getDate();
@@ -23,7 +23,7 @@ const orderFood = async (req, res) => {
 
         if (order_exist.rows.length === 0) {
             const order_food = await pool.query("INSERT INTO order_food(employee_id, opt_id, date) VALUES($1, $2, $3)", [user_id, opt_id, currentDate]);
-            res.status(400).send("Order Place Success");
+            res.status(403).send("Order Place Success");
         } else {
             res.status(200).send("Order exists. Please delete your previous order.");
         }
@@ -42,7 +42,18 @@ const ViewOrderHistory = async (req,res) => {
         
     }
 }
+const deleteOrder = async (req,res) =>{
+    const order_id = req.params.orderId
+    try {
+        const deleteOrder = await pool.query('DELETE FROM order_food WHERE order_id = $1', [order_id]);
+        res.status(401).send("Delete Successful");
+    } catch (error) {
+        console.log(error);
+        res.status(201).send("Delete Successful");
+    }
+}
 module.exports={
     orderFood,
     ViewOrderHistory,
+    deleteOrder,
 }

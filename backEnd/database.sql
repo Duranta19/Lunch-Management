@@ -62,3 +62,14 @@ INSERT INTO order_food(employee_id, opt_id) VALUES(1,1)
 
 --view employee order history
 SELECT * FROM food_option INNER JOIN order_food ON  food_option.opt_id = order_food.opt_id WHERE order_food.employee_id = 1;
+
+SELECT 
+    food_option.*,
+    order_food.*,
+    users.user_name AS e_name
+FROM 
+    food_option
+RIGHT JOIN 
+    order_food ON food_option.opt_id = order_food.opt_id
+JOIN
+    users ON users.id = order_food.employee_id;
